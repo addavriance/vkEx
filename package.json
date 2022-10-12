@@ -1,0 +1,25 @@
+{
+  "name": "google-ex",
+  "version": "0.1.0",
+  "description": "",
+  "main": "content.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "addavriance",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.1.2",
+    "cheerio": "^1.0.0-rc.12",
+    "commonjs": "0.0.1",
+    "esbuild": "^0.15.10",
+    "jquery": "^3.6.1",
+    "lodash": "^4.17.21",
+    "nodejs": "0.0.0",
+    "qr-scanner": "^1.4.1",
+    "requirejs": "^2.3.6",
+    "rollup": "^3.0.0",
+    "webpack": "^5.74.0"
+  }
+}

@@ -1,0 +1,20 @@
+{
+    "manifest_version": 2,
+    "name":"vk_ex",
+    "version":"0.1.0",
+    "browser_action":{
+        "default_popup":"index.html"
+    },
+    "content_scripts": [
+        {
+            "matches": ["https://vk.com/*"],
+            "js": [
+                "content.js"
+                ]
+        }
+    ],
+    "background":{
+        "scripts": ["background.js"],
+        "persistent":false
+    }
+}
