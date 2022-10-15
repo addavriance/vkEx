@@ -3,18 +3,21 @@
     "name":"vk_ex",
     "version":"0.1.0",
     "browser_action":{
-        "default_popup":"index.html"
+        "default_popup":"popup.html"
     },
     "content_scripts": [
         {
             "matches": ["https://vk.com/*"],
-            "js": [
-                "content.js"
-                ]
+            "js": ["content.js"]
         }
     ],
     "background":{
         "scripts": ["background.js"],
         "persistent":false
-    }
+    },
+    "permissions":["activeTab", "tabs", "storage"],
+    "web_accessible_resources": [
+        "content.js",
+        "popup.js"
+     ]
 }
