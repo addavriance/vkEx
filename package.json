@@ -1,25 +1,32 @@
 {
-  "name": "google-ex",
-  "version": "0.1.0",
-  "description": "",
-  "main": "content.js",
-  "type": "module",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "name": "vkEx",
+  "version": "1.0.0",
+  "main": "src/context.js",
+  "repository": "https://github.com/addavriance/vkEx",
   "author": "addavriance",
-  "license": "ISC",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "watch": "parcel watch --no-hmr ./src/popup.html -d extension/dist --no-source-maps  --public-url ./",
+    "build": "yarn clean & parcel build ./src/popup.html -d extension/dist --no-source-maps  --public-url ./",
+    "clean": "rm -rf ./extension/dist ./dist ./.cache",
+    "lint": "eslint ./src"
+  },
   "dependencies": {
-    "axios": "^1.1.2",
-    "cheerio": "^1.0.0-rc.12",
-    "commonjs": "0.0.1",
-    "esbuild": "^0.15.10",
-    "jquery": "^3.6.1",
-    "lodash": "^4.17.21",
-    "nodejs": "0.0.0",
+    "@zxing/browser": "^0.1.1",
+    "@zxing/library": "^0.19.1",
     "qr-scanner": "^1.4.1",
-    "requirejs": "^2.3.6",
-    "rollup": "^3.0.0",
-    "webpack": "^5.74.0"
+    "qrcode-decoder": "^0.3.2",
+    "react": "^16.7.0-alpha.0",
+    "react-dom": "^16.7.0-alpha.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.8.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.2",
+    "eslint-plugin-react": "^7.11.1",
+    "parcel-bundler": "^1.12.4"
   }
 }

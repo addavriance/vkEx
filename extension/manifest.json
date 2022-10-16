@@ -1,0 +1,19 @@
+{
+    "manifest_version": 2,
+    "name":"vk_ex",
+    "version":"0.1.0",
+    "browser_action":{
+        "default_popup":"dist/popup.html"
+    },
+    "content_scripts": [
+        {
+            "matches": ["https://vk.com/*"],
+            "js": ["dist/content.b60ea27a.js"]
+        }
+    ],
+    "permissions":["activeTab", "tabs", "storage"],
+    "web_accessible_resources": [
+        "dist/content.b60ea27a.js",
+        "dist/popup.ba0889f8.js"
+     ]
+}
