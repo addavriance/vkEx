@@ -1,9 +1,9 @@
 {
-  "name": "vkEx",
+  "name": "chrome-qrcode-reader",
   "version": "1.0.0",
   "main": "src/context.js",
-  "repository": "https://github.com/addavriance/vkEx",
-  "author": "addavriance",
+  "repository": "https://github.com/beizhedenglong/chrome-extension-starter-kit.git",
+  "author": "Victor Wang(wang shaojie) <wang_shaojie@icloud.com>",
   "license": "MIT",
   "private": false,
   "scripts": {
@@ -15,10 +15,12 @@
   "dependencies": {
     "@zxing/browser": "^0.1.1",
     "@zxing/library": "^0.19.1",
+    "html5-qrcode": "^2.2.3",
     "qr-scanner": "^1.4.1",
     "qrcode-decoder": "^0.3.2",
     "react": "^16.7.0-alpha.0",
-    "react-dom": "^16.7.0-alpha.0"
+    "react-dom": "^16.7.0-alpha.0",
+    "vue-barcode-reader": "^1.0.2"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",
