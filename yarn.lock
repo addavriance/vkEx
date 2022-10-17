@@ -3269,6 +3269,11 @@ html-tags@^1.0.0:
   resolved "https://registry.yarnpkg.com/html-tags/-/html-tags-1.2.0.tgz#c78de65b5663aa597989dd2b7ab49200d7e4db98"
   integrity sha1-x43mW1Zjqll5id0rerSSANfk25g=
 
+html5-qrcode@^2.2.3:
+  version "2.2.3"
+  resolved "https://registry.yarnpkg.com/html5-qrcode/-/html5-qrcode-2.2.3.tgz#5acb826860365e7c7ab91e1e14528ea16a502e8a"
+  integrity sha512-9CtEz5FVT56T76entiQxyrASzBWl8Rm30NHiQH8T163Eml5LS14BoZlYel9igxbikOt7O8KhvrT3awN1Y2HMqw==
+
 htmlnano@^0.2.2:
   version "0.2.6"
   resolved "https://registry.yarnpkg.com/htmlnano/-/htmlnano-0.2.6.tgz#d36e39729faa1dd5f8709d8963c67c7502e578b1"
@@ -6445,6 +6450,13 @@ vm-browserify@0.0.4:
   integrity sha1-XX6kW7755Kb/ZflUOOCofDV9WnM=
   dependencies:
     indexof "0.0.1"
+
+vue-barcode-reader@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/vue-barcode-reader/-/vue-barcode-reader-1.0.2.tgz#71d481cb84e815f420129701607688901e298720"
+  integrity sha512-dDf7HeDZBAo7xYdmpfUql92pmZsjdFCHNy3JXd2FCer5mA8sNU42CDNNf/juaUIxjZNUXaBFwEX4pJD2zGqtvw==
+  dependencies:
+    "@zxing/library" "^0.19.1"
 
 w3c-hr-time@^1.0.1:
   version "1.0.2"
