@@ -2,14 +2,17 @@
   "manifest_version": 3,
   "name": "VK Covers - Анимированные обложки для ВКонтакте",
   "version": "0.1.0",
+  "icons": { "16": "icon16.png",
+             "48": "icon48.png",
+             "128": "icon128.png" },
   "action": {
-    "default_title": "VK Covers: анимированные обложки включены",
-    "default_icon": "icon.png"
+    "default_title": " ",
+    "default_icon": "icon48.png"
   },
   "content_scripts": [
     {
       "matches": [
-        "https://vk.com/*"
+        "https://*.vk.com/*"
       ],
       "js": [
         "dist/content.b60ea27a.js"
