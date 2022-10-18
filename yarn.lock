@@ -1840,6 +1840,11 @@ contains-path@^0.1.0:
   resolved "https://registry.yarnpkg.com/contains-path/-/contains-path-0.1.0.tgz#fe8cf184ff6670b6baef01a9d4861a5cbec4120a"
   integrity sha1-/ozxhP9mcLa67wGp1IYaXL7EEgo=
 
+content.js@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/content.js/-/content.js-0.1.0.tgz#6f389f1ca406513c3beef1e0c801469fcb4d9f8f"
+  integrity sha512-w2TRYjErnTk5+o9Yo4g85X2j4dG6kTEHYXL6/S7oCp6Bj8nY8iq+6umHnbl+qCIHl3dGk5aDczQdY2npjESZJw==
+
 convert-source-map@^1.5.1:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/convert-source-map/-/convert-source-map-1.6.0.tgz#51b537a8c43e0f04dec1993bffcdd504e758ac20"

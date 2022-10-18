@@ -7,3 +7,4 @@ extension.*
 yarn-error.*
 package-lock.json
 .vscode
+extension.pem
