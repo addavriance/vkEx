@@ -2,9 +2,8 @@ import { BrowserQRCodeReader } from '@zxing/browser'
 var HTMLparts = ['<div class="OwnerPageCover__in" style="background-image: url(&quot;','&quot;);"><div class="OwnerPageCover__button"><button type="button" class="vkuiButton vkuiButton--sz-m vkuiButton--lvl-secondary vkuiButton--clr-overlay vkuiButton--aln-center vkuiButton--sizeY-compact vkuiButton--with-icon vkuiTappable vkuiTappable--sizeX-regular vkuiTappable--hasHover vkuiTappable--hasActive vkuiTappable--mouse"><span class="vkuiButton__in"><span role="presentation" class="vkuiButton__before"><div role="presentation" class=" vkuiIcon vkuiIcon--24 vkuiIcon--w-24 vkuiIcon--h-24 vkuiIcon--pen_outline_24 " style="width: 24px; height: 24px;"><svg viewBox="0 0 24 24" width="24" height="24" style="display: block;"><use xlink:href="#pen_outline_24" style="fill: currentcolor;"></use></svg></div></span><span class="vkuiButton__content vkuiSubhead vkuiSubhead--sizeY-compact vkuiSubhead--w-2">Изменить обложку</span></span><span aria-hidden="true" class="vkuiTappable__hoverShadow"></span><span aria-hidden="true" class="vkuiFocusVisible vkuiFocusVisible--outside"></span></button></div></div>' ,'&quot;);"><div class="OwnerPageCover__button"><button type="button" class="vkuiButton vkuiButton--sz-m vkuiButton--lvl-secondary vkuiButton--clr-overlay vkuiButton--aln-center vkuiButton--sizeY-compact vkuiButton--with-icon vkuiTappable vkuiTappable--sizeX-regular vkuiTappable--hasHover vkuiTappable--hasActive vkuiTappable--mouse"><span class="vkuiButton__in"><span role="presentation" class="vkuiButton__before"><div role="presentation" class=" vkuiIcon vkuiIcon--24 vkuiIcon--w-24 vkuiIcon--h-24 vkuiIcon--pen_outline_24 " style="width: 24px; height: 24px;"><svg viewBox="0 0 24 24" width="24" height="24" style="display: block;"><use xlink:href="#pen_outline_24" style="fill: currentcolor;"></use></svg></div></span><span class="vkuiButton__content vkuiSubhead vkuiSubhead--sizeY-compact vkuiSubhead--w-2">Чтобы изменить обложку отключите расширение</span></span><span aria-hidden="true" class="vkuiTappable__hoverShadow"></span><span aria-hidden="true" class="vkuiFocusVisible vkuiFocusVisible--outside"></span></button></div></div>', '&quot;);"></div>']
 var loadingHTML = HTMLparts[0]+'https://venturebeat.com/wp-content/uploads/2014/10/loading_desktop_by_brianmccumber-d41z4h6.gif?w=1200&strip=all'+HTMLparts[3]
 var start_HTML='';
-if(localStorage.working==undefined){
-    localStorage.working=true
-}
+localStorage.working = localStorage.working == undefined ? localStorage.working = true : localStorage.working;
+chrome.runtime.sendMessage(null, {working: localStorage.working}, function(response) {});
 function getURL(html='', my=false){
         var url=html.replace(HTMLparts[0], '').replace(HTMLparts[1],'').replace('&quot;);"></div>', '').replace('&quot;);"><div class="OwnerPageCover__button OwnerPageCover__button--shown"><button type="button" class="vkuiButton vkuiButton--sz-m vkuiButton--lvl-secondary vkuiButton--clr-overlay vkuiButton--aln-center vkuiButton--sizeY-compact vkuiButton--with-icon vkuiTappable vkuiTappable--sizeX-regular vkuiTappable--hasHover vkuiTappable--hasActive vkuiTappable--mouse vkuiTappable--hover-background"><span class="vkuiButton__in"><span role="presentation" class="vkuiButton__before"><div role="presentation" class=" vkuiIcon vkuiIcon--24 vkuiIcon--w-24 vkuiIcon--h-24 vkuiIcon--pen_outline_24 " style="width: 24px; height: 24px;"><svg viewBox="0 0 24 24" width="24" height="24" style="display: block;"><use xlink:href="#pen_outline_24" style="fill: currentcolor;"></use></svg></div></span><span class="vkuiButton__content vkuiSubhead vkuiSubhead--sizeY-compact vkuiSubhead--w-2">Изменить обложку</span></span><span aria-hidden="true" class="vkuiTappable__hoverShadow"></span><span aria-hidden="true" class="vkuiFocusVisible vkuiFocusVisible--outside"></span></button></div></div>', '')
         document.getElementsByClassName("OwnerPageCover__in")[0].outerHTML = loadingHTML
@@ -88,15 +87,12 @@ function checkonload(fail){
 window.onload=checkonload(false)
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-    localStorage.working=localStorage.working=='true' ? false : true
-
     if(localStorage.working=='true'){
-        alert("VK Covers: Расширение включено, перезагрузите страницу.")
-        // chrome.browserAction.setTitle("VK Covers: анимированные обложки включены")
+        localStorage.working='false'
     } else {
-        alert("VK Covers: Расширение отключено, перезагрузите страницу.")
-        // chrome.browserAction.setTitle("VK Covers: анимированные обложки в отключены")
+        localStorage.working='true'
     }
+    chrome.runtime.sendMessage(null, {working: localStorage.working}, function(response) {});
     return true
 });
 
