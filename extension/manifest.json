@@ -7,7 +7,7 @@
              "48": "icon48.png",
              "128": "icon128.png" },
   "action": {
-    "default_title": " ",
+    "default_title": "VK Covers - Анимированные обложки для ВК",
     "default_popup": "dist/popup.html",
     "default_icon": "icon48.png"
   },
