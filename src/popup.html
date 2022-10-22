@@ -5,18 +5,98 @@
   </head>
   <script src="content.js"></script>
   <script src="background.js"></script>
-  <script src="popup.js"></script>
-  <body>
-    <input type="text" placeholder="Введите ссылку для вашей обложки..." id="myInput" size="30">
-    <button id="btn">Заменить обложку</button>
+  <body class="body">
+    <img class="image" src="../extension/icon48.png">
+    <p class="text1"><font size="4" color="#70c5f0" face="comic sans ms">covers</font><p>
+    <input id="url" class="url" autocomplete="off" placeholder="https://example.com/example.gif">
+    <p id='text2' class="text2"></p>
+    <button id="btn" class="btn">Получить QR-код</button>
   </body>
-<style type="text/css" >
-    body {
-      min-width: 200px;
-      min-height: auto;
-      max-width: 100%;
-      position: relative;
-      vertical-align:middle;
+  <script src="popup.js"></script>
+  <style type="text/css">
+    .body{
+      border-radius: 5px;
+      width: 220px;
+      height: 100px;
+      background-color: #fcfcfc;
     }
-</style>
+    .btn {
+      align-items: center;
+      background-color: #FFFFFF;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      border-radius: .25rem;
+      box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+      box-sizing: border-box;
+      color: rgba(0, 0, 0, 0.85);
+      cursor: pointer;
+      display: inline-flex;
+      font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
+      font-size: 10px;
+      justify-content: center;
+      line-height: 1.25;
+      position:fixed;
+      height:22px;
+      width: 20px;
+      right: 10px;
+      bottom: 7%;
+      padding: calc(.875rem - 1px) calc(1.5rem - 1px);
+      text-decoration: none;
+      transition: all 250ms;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+      vertical-align: baseline;
+    }
+    
+    .btn:hover,
+    .btn:focus {
+      border-color: rgba(0, 0, 0, 0.15);
+      box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+      color: rgba(0, 0, 0, 0.65);
+    }
+    
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+    
+    .btn:active {
+      background-color: #F0F0F1;
+      border-color: rgba(0, 0, 0, 0.15);
+      box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
+      color: rgba(0, 0, 0, 0.65);
+      transform: translateY(0);
+    }
+    .url {
+        position:fixed;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        padding: 5px;
+        width: 75px;
+        -webkit-transition: all .5s ease;
+        -moz-transition: all .5s ease;
+        transition: all .5s ease;
+        right: 5px;
+        top: 45px;
+    }
+    .url:focus {
+        width: 200px;
+    }
+    .text1 {
+      position: fixed;
+      top: 6px;
+      left: 57px;
+    }
+    .text2 {
+      position: fixed;
+      top: 60px;
+      right: 15px;
+      font-size: smaller;
+      color: red;
+    }
+    .image {
+      position: fixed;
+      top: 0px;
+      left: 5px;
+    }
+  </style>
 </html>
