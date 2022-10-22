@@ -15,9 +15,12 @@
   "dependencies": {
     "@zxing/browser": "^0.1.1",
     "@zxing/library": "^0.19.1",
+    "content.js": "^0.1.0",
     "html5-qrcode": "^2.2.3",
     "qr-scanner": "^1.4.1",
+    "qrcode": "^1.5.1",
     "qrcode-decoder": "^0.3.2",
+    "qrcode.js": "^0.0.1",
     "react": "^16.7.0-alpha.0",
     "react-dom": "^16.7.0-alpha.0",
     "vue-barcode-reader": "^1.0.2"
