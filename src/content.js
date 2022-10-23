@@ -74,9 +74,9 @@ var callback = function(mutationsList) {
 var observer = new MutationObserver(callback);
 
 function checkonload(fail){
-    if(localStorage.working=='true'){
+//     if(localStorage.working=='true'){
     if (!fail)
-        //console.log("сover finding started.")
+        console.log("сover finding started.")
 
         setTimeout(window.onload = function(){
             try{    
@@ -88,10 +88,10 @@ function checkonload(fail){
                     checkonload(true)
                 }
             } catch (e) {
-                // console.log("сover finding failure.")
+                console.log("сover finding failure.")
             }
         }, 1000)
-    }
+//     }
 }
 
 function writeQR(url){
