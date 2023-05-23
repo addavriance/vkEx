@@ -1,13 +1,13 @@
 {
   "manifest_version": 3,
   "name": "VK Covers - Анимированные обложки для ВК",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Подробнее о расширении и коде: https://github.com/addavriance/vkEx",
   "icons": { "16": "icon16.png",
              "48": "icon48.png",
              "128": "icon128.png" },
   "action": {
-    "default_title": "VK Covers - Анимированные обложки для ВК",
+    "default_title": " ",
     "default_popup": "dist/popup.html",
     "default_icon": "icon48.png"
   },
@@ -34,7 +34,8 @@
       "resources": [
         "dist/content.b60ea27a.js",
         "dist/popup.ba0889f8.js",
-        "dist/background.f0f12a5f.js"
+        "dist/background.f0f12a5f.js",
+        "dist/qr-scanner-worker.min.443a6e00.js"
       ],
       "matches": [
         "<all_urls>"
