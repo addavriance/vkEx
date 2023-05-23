@@ -1,48 +1,107 @@
-import * as QRCode from 'qrcode';
+import QRCode from 'easyqrcodejs';
+
+function convertSvgToCanvas(svgElement) {
+  const canvas = document.createElement('canvas');
+
+  canvas.width = svgElement.width.animVal.value
+  canvas.height = svgElement.height.animVal.value
+  
+  const context = canvas.getContext('2d');
+  
+  const svgString = new XMLSerializer().serializeToString(svgElement);
+  
+  const img = new Image();
+  
+  img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svgString);
+
+  img.onload = function() {
+    context.drawImage(img, 0, 0);
+  };
+
+  return canvas;
+}
+
+function createQRCode(textLink) {
+  var qrCodeContainer = document.getElementById("qrcode");
+  qrCodeContainer.style.display = 'none';
+
+  new QRCode(qrCodeContainer, {
+    text: textLink,
+    width: 128,
+    height: 128,
+    colorDark: "#000000",
+    colorLight: "#ffffff",
+    quietZone: 10,
+    quietZoneColor: '#ffffff',
+    correctLevel: QRCode.CorrectLevel.H,
+    drawer: 'svg',
+    onRenderingEnd: function(qrCodeOptions) {
+      reDrawDownloadQRCode(textLink, qrCodeOptions._element);
+  },
+  });
+}
+
+function reDrawDownloadQRCode(textLink, qrCodeContainer) {
+  const qrSvg = qrCodeContainer.querySelector('svg');
+  const qrCanvas = convertSvgToCanvas(qrSvg);
+
+  const backgroundImg = new Image();
+  backgroundImg.crossOrigin = "anonymous";
+  backgroundImg.src = textLink;
+  backgroundImg.onload = () => {
+    const finalCanvas = document.createElement('canvas');
+    const finalContext = finalCanvas.getContext('2d');
+
+    finalCanvas.width = Math.max(backgroundImg.width, 960);
+    finalCanvas.height = Math.max(backgroundImg.height, 384);
+
+    const ctx = finalCanvas.getContext('2d');
+
+    ctx.drawImage(backgroundImg, 0, 0, backgroundImg.width, backgroundImg.height, 0, 0, finalCanvas.width, finalCanvas.height);
+
+    var qrX = (finalCanvas.width - qrCanvas.width) / 2;
+    var qrY = (finalCanvas.height - qrCanvas.height) / 2;
+    finalContext.drawImage(qrCanvas, qrX, qrY);
+
+    var imageData = finalCanvas.toDataURL("image/png");
+
+    var downloadLink = document.createElement("a");
+    downloadLink.href = imageData;
+    downloadLink.download = "qrcode.png";
+
+    downloadLink.style.display = "none"; // Скрыть элемент скачивания QR-кода
+    qrCodeContainer.appendChild(downloadLink);
+    downloadLink.click();
+    qrCodeContainer.removeChild(downloadLink); // Удалить элемент после скачивания
+  };
+}
+
+function validURL(url) {
+  var pattern = new RegExp(
+    '^(https?:\\/\\/)?' +
+    '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' +
+    '((\\d{1,3}\\.){3}\\d{1,3}))' +
+    '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' +
+    '(\\?[;&a-z\\d%_.~+=-]*)?' +
+    '(\\#[-a-z\\d_]*)?$',
+    'i'
+  );
+  return !!pattern.test(url);
+}
+
+function handleButtonClick() {
+  var urlInput = document.getElementById("url").value;
+  var qrTextElement = document.getElementById('text2');
+
+  if (validURL(urlInput)) {
+    createQRCode(urlInput);
+    qrTextElement.textContent = '';
+  } else if (!urlInput) {
+    qrTextElement.textContent = 'Введите ссылку.';
+  } else {
+    qrTextElement.textContent = 'Неверная ссылка.';
+  }
+}
 
 var btn = document.getElementById('btn');
-var text = document.getElementById('text2');
-btn.addEventListener("click", function(){
-    var url = document.getElementById("url").value;
-    validURL(url) ? writeQR(url) && (text.textContent = '') : text.textContent = 'Invalid URL.';
-})
-
-function writeQR(url){
-    const qrOption = { 
-        margin: 50,
-        width : 1000,
-    };
-
-    QRCode.toCanvas(url, qrOption, function(error, canvas) {
-        if (error) {
-            console.error(error);
-            return;
-        }
-        var name = "cover_"+Math.floor(Math.random() * 500)+".png";
-
-        var context = canvas.getContext('2d');
-        context.font = '24px Arial';
-        context.fillStyle = '#000000';
-        context.fillText('VK Covers extension.', 10, canvas.height/2);
-        context.fillText('github.com/addavriance/vkEx', 10, (canvas.height/2)+25);
-
-        canvas.toBlob(function(blob) {
-            var file = new File([blob], name, { type: 'image/png' });
-
-            let a = document.createElement("a");
-            a.href = URL.createObjectURL(file);
-            a.download = name;
-            a.click();
-        }, 'image/png');
-    });
-}
-
-function validURL(str) {
-    var pattern = new RegExp('^(https?:\\/\\/)?'+
-      '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+
-      '((\\d{1,3}\\.){3}\\d{1,3}))'+
-      '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+
-      '(\\?[;&a-z\\d%_.~+=-]*)?'+
-      '(\\#[-a-z\\d_]*)?$','i');
-    return !!pattern.test(str);
-}
+btn.addEventListener("click", handleButtonClick);
